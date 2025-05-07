@@ -1,0 +1,9 @@
+snowflake-connector-python[pandas]
+python-dotenv
+cryptography
+pandas
+pyodbc
+office365-rest-python-client
+streamlit
+streamlit-authenticator==0.2.2
+msal

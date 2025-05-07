@@ -1,0 +1,10 @@
+cookie:
+  expiry_days: 1
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:  
+    sample_user: 
+      email: sample@email.com
+      name: USER
+      password: $2b$12$NsNIvSxA9ofB7FvtC1X0YOTYFpQcl2JkSjqp2d.04PCvMm2QdvuFq

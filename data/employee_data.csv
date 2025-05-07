@@ -1,0 +1,5 @@
+﻿employeeCode,displayName,Email,seatNumber,status
+19001,山田太郎,taro.yamada@example.com,A1,在席中
+19002,佐藤花子,hanako.sato@example.com,B2,不在
+19003,鈴木一郎,ichiro.suzuki@example.com,C3,在席中
+19004,田中二郎,jiro.tanaka@example.com,D4,不在
