@@ -1,0 +1,23 @@
+# 仮想環境ディレクトリ
+profile/venv/
+
+# 機密情報や設定ファイル
+config.yaml
+.env
+
+# データ（機密情報が含まれる場合）
+profile/data/
+
+# VSCodeの設定ファイル
+.vscode/
+
+# PyCharmやIDEの設定ファイル
+.idea/
+
+# バイナリファイルなど
+*.pyc
+__pycache__/
+
+# その他の出力ファイル
+dist/
+build/
