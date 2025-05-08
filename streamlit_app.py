@@ -20,8 +20,8 @@ import ast  # dictを文字列で受け取った場合に使う
 # 🔐 認証関連（Streamlit Authenticator）
 # ========================
 
-# secrets.toml または Streamlit Cloud の Secrets から取得
-config = st.secrets
+# st.secrets は読み取り専用なので dict() でコピー
+config = dict(st.secrets)
 
 # 認証用のインスタンス作成
 authenticator = stauth.Authenticate(
