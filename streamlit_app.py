@@ -15,8 +15,7 @@ load_dotenv()
 # 🔐 認証関連（Streamlit Authenticator）
 # ========================
 # 認証用設定ファイルの読み込み
-with open("config.yaml") as file:
-    config = yaml.load(file, Loader=SafeLoader)
+config = st.secrets
 
 # 認証用のハッシュ関数を作成
 authenticator = stauth.Authenticate(
