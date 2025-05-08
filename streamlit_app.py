@@ -20,24 +20,21 @@ import ast  # dictを文字列で受け取った場合に使う
 # 🔐 認証関連（Streamlit Authenticator）
 # ========================
 
-# os.environ から環境変数として読み込む（st.secrets でも自動で設定される）
-credentials = ast.literal_eval(os.environ["credentials"])  # TOMLでは文字列になるので辞書化
-cookie_name = os.environ["cookie_name"]
-cookie_key = os.environ["cookie_key"]
-cookie_expiry_days = int(os.environ["cookie_expiry_days"])
+# secrets.toml または Streamlit Cloud の Secrets から取得
+config = st.secrets
 
-# 認証クラス作成
+# 認証用のインスタンス作成
 authenticator = stauth.Authenticate(
-    credentials,
-    cookie_name,
-    cookie_key,
-    cookie_expiry_days,
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
 )
 
-# ログインUI表示
+# ログインフォームの表示
 authenticator.login('ログイン', 'main')
 
-# 認証チェック
+# ログイン状態をチェック
 if "authentication_status" not in st.session_state:
     st.session_state["authentication_status"] = None
 if st.session_state["authentication_status"] is False:
