@@ -2,7 +2,7 @@
 profile/venv/
 
 # 機密情報や設定ファイル
-config.yaml
+.streamlit/secrets.toml
 .env
 
 # データ（機密情報が含まれる場合）
