@@ -21,9 +21,11 @@ import ast  # dictを文字列で受け取った場合に使う
 # ========================
 
 # st.secrets は読み取り専用なので dict() でコピー
-config = dict(st.secrets)
+config = {
+    "credentials": dict(st.secrets["credentials"]),
+    "cookie": dict(st.secrets["cookie"])
+}
 
-# 認証用のインスタンス作成
 authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
@@ -31,10 +33,8 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days'],
 )
 
-# ログインフォームの表示
-authenticator.login('ログイン', 'main')
+authenticator.login("ログイン", "main")
 
-# ログイン状態をチェック
 if "authentication_status" not in st.session_state:
     st.session_state["authentication_status"] = None
 if st.session_state["authentication_status"] is False:
