@@ -11,24 +11,33 @@ from yaml.loader import SafeLoader
 
 load_dotenv()
 
+import streamlit as st
+import streamlit_authenticator as stauth
+import os
+import ast  # dictを文字列で受け取った場合に使う
+
 # ========================
 # 🔐 認証関連（Streamlit Authenticator）
 # ========================
-# 認証用設定ファイルの読み込み
-config = st.secrets
 
-# 認証用のハッシュ関数を作成
+# os.environ から環境変数として読み込む（st.secrets でも自動で設定される）
+credentials = ast.literal_eval(os.environ["credentials"])  # TOMLでは文字列になるので辞書化
+cookie_name = os.environ["cookie_name"]
+cookie_key = os.environ["cookie_key"]
+cookie_expiry_days = int(os.environ["cookie_expiry_days"])
+
+# 認証クラス作成
 authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
+    credentials,
+    cookie_name,
+    cookie_key,
+    cookie_expiry_days,
 )
 
-# ログインフォームの表示（最初に必ず呼び出す）
+# ログインUI表示
 authenticator.login('ログイン', 'main')
 
-# ログイン状態の確認
+# 認証チェック
 if "authentication_status" not in st.session_state:
     st.session_state["authentication_status"] = None
 if st.session_state["authentication_status"] is False:
@@ -37,6 +46,7 @@ if st.session_state["authentication_status"] is False:
 elif st.session_state["authentication_status"] is None:
     st.warning("ログインしてください")
     st.stop()
+
 
 # ========================
 # 📦 データ読み込み
